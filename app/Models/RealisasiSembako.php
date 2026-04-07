@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class RealisasiSembako extends Model
+{
+    protected $fillable = [
+        'desa_id',
+        'tahun',
+        'bulan',
+        'jumlah_kpm',
+        'anggaran',
+        'realisasi',
+        'keterangan',
+    ];
+
+    protected $casts = [
+        'tahun' => 'integer',
+        'anggaran' => 'decimal:2',
+        'realisasi' => 'decimal:2',
+    ];
+
+    public function desa(): BelongsTo
+    {
+        return $this->belongsTo(Desa::class);
+    }
+}
